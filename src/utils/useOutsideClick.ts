@@ -1,13 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 
-export default function useOutsideClick(initialIsVisible: boolean) {
-    const [isComponentVisible, setIsComponentVisible] =
-        useState(initialIsVisible);
+export default function useOutsideClick(
+    initialIsVisible: boolean,
+    callback: () => void
+) {
     const ref = useRef<any>(null);
 
     const handleClickOutside = (event: MouseEvent) => {
         if (ref.current && !ref.current.contains(event.target)) {
-            setIsComponentVisible(false);
+            callback();
         }
     };
 
@@ -18,5 +19,5 @@ export default function useOutsideClick(initialIsVisible: boolean) {
         };
     }, []);
 
-    return { ref, isComponentVisible, setIsComponentVisible };
+    return { ref };
 }
