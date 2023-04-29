@@ -36,15 +36,16 @@ const AutoComplete = (props: IAutoComplete) => {
                 list,
                 searchString
             ).splice(0, 5);
+
+            if (searchString.length > 1 && filterList.length) {
+                setSubmitDisabled(false);
+            }
+            if (filterList.length === 0) {
+                setSubmitDisabled(true);
+            }
             setOptionList(filterList);
         } else if (searchString === "" && !showResult) {
             setOptionList(list);
-            setSubmitDisabled(true);
-        }
-        if (searchString.length > 1) {
-            setSubmitDisabled(false);
-        }
-        if (optionList.length === 0) {
             setSubmitDisabled(true);
         }
     }, [searchString]);
