@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 interface IAutoComplete {
     list: IList[];
+    placeHolder?: string;
 }
 
 export interface IList {
@@ -14,7 +15,7 @@ export interface IList {
 }
 
 const AutoComplete = (props: IAutoComplete) => {
-    const { list } = props;
+    const { list, placeHolder } = props;
     const [searchString, setSearchString] = useState("");
     const [optionList, setOptionList] = useState(list);
     const [showResult, setShowResult] = useState(false);
@@ -101,6 +102,7 @@ const AutoComplete = (props: IAutoComplete) => {
                                     type="text"
                                     onChange={handleSearch}
                                     value={searchString}
+                                    placeholder={placeHolder ?? "Search..."}
                                 />
                                 {searchString && (
                                     <span

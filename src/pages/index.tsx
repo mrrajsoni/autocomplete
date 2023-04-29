@@ -18,7 +18,7 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
-                <AutoComplete list={top100Films} />
+                <AutoComplete list={top100Films} placeHolder="Search address" />
             </main>
         </>
     );
