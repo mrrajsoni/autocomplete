@@ -76,8 +76,7 @@ const AutoComplete = (props: IAutoComplete) => {
         setShowResult(false);
     };
 
-    const handleSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
-        ev.preventDefault();
+    const handleSubmit = (ev: React.MouseEvent<HTMLButtonElement>) => {
         const filterList = CommonUtils.getFilteredList(list, searchString);
 
         setOptionList(filterList);
@@ -93,7 +92,11 @@ const AutoComplete = (props: IAutoComplete) => {
         <>
             <div ref={ref} className="autocomplete-container">
                 <div className="autocomplete-wrapper">
-                    <form onSubmit={(ev) => handleSubmit(ev)}>
+                    <form
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                        }}
+                    >
                         <div className="form-inner">
                             <div className="input-container">
                                 <input
@@ -113,7 +116,11 @@ const AutoComplete = (props: IAutoComplete) => {
                                     </span>
                                 )}
                             </div>
-                            <button disabled={submitDisabled} type="submit">
+                            <button
+                                onClick={(ev) => handleSubmit(ev)}
+                                disabled={submitDisabled}
+                                type="button"
+                            >
                                 <IconSearch />
                             </button>
                         </div>
