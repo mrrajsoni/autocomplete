@@ -1,4 +1,5 @@
 import IconClock from "@/Icons/IconClock";
+import IconSearch from "@/Icons/IconSearch";
 import CommonUtils from "@/utils/commonUtils";
 import useOutsideClick from "@/utils/useOutsideClick";
 import { useEffect, useRef, useState } from "react";
@@ -56,6 +57,12 @@ const AutoComplete = (props: IAutoComplete) => {
     };
 
     const toggleOptions = () => {
+        if (pastSearch.length) {
+            const pastSearchContainer = document.querySelector(
+                ".past-searches-container"
+            ) as HTMLDivElement;
+            pastSearchContainer.classList.add("space-top");
+        }
         const optionListContainer = document.querySelector(
             ".suggestion-container"
         ) as HTMLDivElement;
@@ -79,6 +86,7 @@ const AutoComplete = (props: IAutoComplete) => {
         setShowResult(true);
         setSearchString("");
         ref.current.blur();
+        setSubmitDisabled(true);
     };
 
     return (
@@ -105,7 +113,7 @@ const AutoComplete = (props: IAutoComplete) => {
                                 )}
                             </div>
                             <button disabled={submitDisabled} type="submit">
-                                Submit
+                                <IconSearch />
                             </button>
                         </div>
                     </form>

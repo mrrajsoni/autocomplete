@@ -1,8 +1,10 @@
 @import "./reset.scss";
 @import "./variables.scss";
+@import "./fonts.scss";
 
 body {
     background-color: $bodyBg;
+    font-family: Gilroy-Regular;
 }
 
 .autocomplete-container {
@@ -11,6 +13,20 @@ body {
     left: 50%;
     top: 20%;
     transform: translate(-50%, 0);
+
+    button {
+        background: $gray;
+        border: none;
+        width: 40px;
+        padding: 6px;
+        border-radius: 7px;
+        cursor: pointer;
+
+        &:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+    }
 
     .autocomplete-wrapper {
         padding: 20px 25px;
@@ -46,12 +62,17 @@ body {
                 max-height: 300px;
             }
 
-            .past-searches-container,
             .optionlist-container {
                 padding-top: 15px;
+                .options {
+                    padding: 5px 0 5px 5px;
+                }
             }
 
             .past-searches-container {
+                &.space-top {
+                    padding-top: 15px;
+                }
                 .searches {
                     color: $purple;
                     display: flex;
@@ -64,9 +85,6 @@ body {
                         width: 16px;
                     }
                 }
-            }
-            .options {
-                padding: 5px 0 5px 5px;
             }
         }
     }
@@ -84,6 +102,11 @@ body {
             margin-bottom: 10px;
             text-decoration: underline;
         }
+        .result-container {
+            > div {
+                padding-bottom: 10px;
+            }
+        }
     }
 }
 
@@ -99,4 +122,11 @@ input[type="text"] {
     }
 }
 
-// Animations
+//Mobile styles
+
+@media (max-width: 650px) {
+    .autocomplete-container {
+        width: 100%;
+        padding: 0 25px;
+    }
+}
