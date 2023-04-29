@@ -2,7 +2,7 @@ import IconClock from "@/Icons/IconClock";
 import IconSearch from "@/Icons/IconSearch";
 import CommonUtils from "@/utils/commonUtils";
 import useOutsideClick from "@/utils/useOutsideClick";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface IAutoComplete {
     list: IList[];
